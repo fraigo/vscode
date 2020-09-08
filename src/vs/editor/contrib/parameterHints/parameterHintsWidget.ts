@@ -177,7 +177,9 @@ export class ParameterHintsWidget extends Disposable implements IContentWidget {
 		if (this.visible) {
 			return {
 				position: this.editor.getPosition(),
-				preference: [ContentWidgetPositionPreference.ABOVE, ContentWidgetPositionPreference.BELOW]
+				preference: this.editor.getOption(EditorOption.parameterHints).position === 'above' ?
+					[ContentWidgetPositionPreference.ABOVE, ContentWidgetPositionPreference.BELOW] :
+					[ContentWidgetPositionPreference.BELOW, ContentWidgetPositionPreference.ABOVE]
 			};
 		}
 		return null;

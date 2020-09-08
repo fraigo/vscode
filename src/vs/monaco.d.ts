@@ -3553,6 +3553,11 @@ declare namespace monaco.editor {
 		 * Defaults to false.
 		 */
 		cycle?: boolean;
+		/**
+		 * Controls position of the widget.
+		 * Defaults to above.
+		 */
+		position?: 'above' | 'below';
 	}
 
 	export type InternalParameterHintOptions = Readonly<Required<IEditorParameterHintOptions>>;
