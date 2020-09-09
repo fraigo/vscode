@@ -139,6 +139,9 @@ export class TabsTitleControl extends TitleControl {
 		this.tabsContainer.setAttribute('role', 'tablist');
 		this.tabsContainer.draggable = true;
 		addClass(this.tabsContainer, 'tabs-container');
+		if (this.configurationService.getValue<boolean>('workbench.editor.multiLineTabs')) {
+			addClass(this.tabsContainer, 'multi-line-tabs');
+		}
 		this._register(Gesture.addTarget(this.tabsContainer));
 
 		// Tabs Scrollbar

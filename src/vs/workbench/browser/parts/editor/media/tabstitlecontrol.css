@@ -25,6 +25,11 @@
 	height: 1px;
 }
 
+.monaco-workbench .part.editor > .content .editor-group-container > .title.tabs> .tabs-and-actions-container > .monaco-scrollable-element > .tabs-container.multi-line-tabs {
+	height: auto !important;
+	flex-wrap: wrap;
+}
+
 .monaco-workbench .part.editor > .content .editor-group-container > .title.tabs > .tabs-and-actions-container > .monaco-scrollable-element {
 	flex: 1;
 }
