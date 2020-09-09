@@ -132,7 +132,11 @@ export class TabsTitleControl extends TitleControl {
 		// Tabs and Actions Container (are on a single row with flex side-by-side)
 		this.tabsAndActionsContainer = document.createElement('div');
 		addClass(this.tabsAndActionsContainer, 'tabs-and-actions-container');
+		if (this.configurationService.getValue<boolean>('workbench.editor.multiLineTabs')) {
+			addClass(this.tabsAndActionsContainer, 'multi-line-tabs-container');
+		}
 		this.titleContainer.appendChild(this.tabsAndActionsContainer);
+		this.registerWrappedTabListener(this.tabsAndActionsContainer);
 
 		// Tabs Container
 		this.tabsContainer = document.createElement('div');
@@ -183,6 +187,16 @@ export class TabsTitleControl extends TitleControl {
 		this.tabsScrollbar?.updateOptions({
 			horizontalScrollbarSize: this.getTabsScrollbarSizing()
 		});
+	}
+
+	private registerWrappedTabListener(element: HTMLElement) {
+		this._register(this.configurationService.onDidChangeConfiguration(e => {
+			if (this.configurationService.getValue<boolean>('workbench.editor.multiLineTabs')) {
+				addClass(element, 'multi-line-tabs-container');
+			} else {
+				removeClass(element, 'multi-line-tabs-container');
+			}
+		}));
 	}
 
 	private getTabsScrollbarSizing(): number {
