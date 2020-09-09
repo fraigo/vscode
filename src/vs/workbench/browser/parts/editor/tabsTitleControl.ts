@@ -132,6 +132,9 @@ export class TabsTitleControl extends TitleControl {
 		// Tabs and Actions Container (are on a single row with flex side-by-side)
 		this.tabsAndActionsContainer = document.createElement('div');
 		addClass(this.tabsAndActionsContainer, 'tabs-and-actions-container');
+		if (this.configurationService.getValue<boolean>('workbench.editor.multiLineTabs')) {
+			addClass(this.tabsAndActionsContainer, 'multi-line-tabs-container');
+		}
 		this.titleContainer.appendChild(this.tabsAndActionsContainer);
 
 		// Tabs Container
@@ -139,9 +142,6 @@ export class TabsTitleControl extends TitleControl {
 		this.tabsContainer.setAttribute('role', 'tablist');
 		this.tabsContainer.draggable = true;
 		addClass(this.tabsContainer, 'tabs-container');
-		if (this.configurationService.getValue<boolean>('workbench.editor.multiLineTabs')) {
-			addClass(this.tabsContainer, 'multi-line-tabs');
-		}
 		this._register(Gesture.addTarget(this.tabsContainer));
 
 		// Tabs Scrollbar
